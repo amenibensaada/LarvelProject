@@ -21,21 +21,32 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-
+    
         if (Auth::attempt($request->only('email', 'password'))) {
             // Check the user's role after authentication
-            if (Auth::user()->role == 'user') {
-                return redirect()->intended('/home'); // Redirect to front for users
-            } else  if (Auth::user()->role == 'admin')  {
-                return redirect()->intended('/admin/dashboard'); // Redirect to back for admins
+            if (Auth::user()->role == 'admin') {
+                return redirect()->intended('/admin/dashboard'); // Redirect to admin dashboard
+            } else {
+                return redirect()->intended('/home'); // Redirect to user home
             }
         }
-        
-
+    
+        // If login fails
         throw ValidationException::withMessages([
             'email' => [trans('auth.failed')],
         ]);
     }
+    
+    public function logout(Request $request)
+{
+    Auth::logout();  // Logout the user
+    $request->session()->invalidate();  // Invalidate the session
+    $request->session()->regenerateToken();  // Regenerate the CSRF token
+
+    return redirect('/login');  // Redirect to login after logout
+}
+
+    
 
    
 
