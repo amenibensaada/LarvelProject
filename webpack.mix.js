@@ -1,5 +1,3 @@
-const mix = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,7 +9,23 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+const mix = require("laravel-mix");
+const { VueLoaderPlugin } = require("vue-loader");
+
+mix.js("resources/js/app.js", "public/js")
+    .vue() // Enables Vue file processing
+    .sass("resources/sass/app.scss", "public/css");
+
+mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: "vue-loader",
+            },
+        ],
+    },
+    plugins: [
+        new VueLoaderPlugin(), // Add the VueLoaderPlugin here
+    ],
+});
