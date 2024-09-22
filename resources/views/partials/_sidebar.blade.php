@@ -17,19 +17,19 @@
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="restaurants-menu">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu" >
                     <!-- Show Restaurants -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('restaurants.index') }}">
                             <i class="menu-icon mdi mdi-eye"></i>
-                            Show Restaurants
+                            My Restaurants
                         </a>
                     </li>
                     <!-- Add New Restaurant -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('restaurants.create') }}">
                             <i class="menu-icon mdi mdi-plus-circle"></i>
-                            Add New Restaurant
+                            Add Restaurant
                         </a>
                     </li>
                 </ul>

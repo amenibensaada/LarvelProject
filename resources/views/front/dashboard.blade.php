@@ -13,7 +13,7 @@
 
 
 <!-- Mission Statement Section -->
-<div class="container-fluid py-5" style="background: linear-gradient(135deg, #f5f7fa, #c3cfe2);">
+<div class="container-fluid py-5 mt-5 mb-5" style="background: linear-gradient(135deg, #f5f7fa, #c3cfe2);">
     <div class="container text-center">
         <div class="row">
             <div class="col-lg-10 mx-auto">
@@ -25,13 +25,13 @@
                 </p>
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="rounded-circle bg-white shadow-lg p-4 mx-3" style="width: 120px; height: 120px;">
-                        <img src="{{ asset('assets/icons/food-donation.svg') }}" class="img-fluid" alt="Food Donation">
+                        <img src="{{ asset('assets/images/food-donation.png') }}" class="img-fluid" alt="Food Donation">
                     </div>
                     <div class="rounded-circle bg-white shadow-lg p-4 mx-3" style="width: 120px; height: 120px;">
-                        <img src="{{ asset('assets/icons/community.svg') }}" class="img-fluid" alt="Community Support">
+                        <img src="{{ asset('assets/images/community-support.png') }}" class="img-fluid" alt="Community Support">
                     </div>
                     <div class="rounded-circle bg-white shadow-lg p-4 mx-3" style="width: 120px; height: 120px;">
-                        <img src="{{ asset('assets/icons/eco-friendly.svg') }}" class="img-fluid" alt="Eco-Friendly">
+                        <img src="{{ asset('assets/images/eco-freindly.png') }}" class="img-fluid" alt="Eco-Friendly">
                     </div>
                 </div>
                 <a href="#learn-more" class="btn btn-lg mt-5" style="background-color: #1a1a2e; color: white; padding: 12px 30px; border-radius: 50px; font-size: 1.1rem;">Learn More</a>

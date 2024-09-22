@@ -21,7 +21,7 @@
                 <h1 class="welcome-text">Welcome back, 
                     <span class="text-black fw-bold">{{ Auth::user()->name }}</span>
                 </h1>
-                <h3 class="welcome-sub-text">Together, we’re helping reduce food waste and provide meals to those in need.</h3>
+                {{-- <h3 class="welcome-sub-text">Together, we’re helping reduce food waste and provide meals to those in need.</h3> --}}
             </li>
         @else
             <li class="nav-item fw-semibold d-none d-lg-block ms-0">
