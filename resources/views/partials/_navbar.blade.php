@@ -85,9 +85,7 @@
                     <a class="dropdown-item" href="#">
                         <i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile
                     </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="dropdown-item-icon mdi mdi-settings-outline text-primary me-2"></i> Settings
-                    </a>
+                   
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i> Sign Out

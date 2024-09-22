@@ -11,6 +11,101 @@
     </div>
 </div>
 
+<!-- Section for Featured Partners -->
+<div class="container my-5">
+    <div class="row align-items-center">
+
+    <!-- Description Section -->
+    <div class="col-md-6 d-flex flex-column justify-content-center">
+        <h2 class="fw-bold mb-4" style="font-size: 2.5rem; color: #2c3e50;">Our Latest Food Rescue Actions</h2>
+        <p class="text-muted mb-4" style="font-size: 1.2rem; line-height: 1.6;">
+            We partner with restaurants and organizations to rescue surplus food and redistribute it to those in need.
+            Take a look at our recent efforts to reduce food waste and provide meals for the homeless.
+        </p>
+        <p class="fw-light" style="font-size: 1.1rem; color: #34495e;">
+            Our partners, such as Restaurant 1, have helped rescue <strong>5,000 meals</strong> in the past month alone.
+            Together, we make a significant impact in reducing waste and helping those in need.
+        </p>
+        <a href="#join-us" class="btn btn-primary btn-lg rounded-pill mt-3" 
+        style="background-color: #204d6d; border: none; padding: 12px 30px; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+            Join Us Now
+        </a>
+    </div>
+
+
+
+        <!-- Slider Section -->
+        <div class="col-md-6">
+            <div id="partnerCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <img src="{{ asset('assets/images/food-rescue-1.png') }}" class="d-block w-100 rounded" alt="Restaurant 1" style="height: 400px; object-fit: cover;">
+                        
+                    </div>
+                    <!-- Additional Slides -->
+                    <div class="carousel-item">
+                        <img src="{{ asset('assets/images/food-rescue-2.jpg') }}" class="d-block w-100 rounded" alt="Restaurant 2" style="height: 400px; object-fit: cover;">
+                        
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('assets/images/food-rescue-3.jpg') }}" class="d-block w-100 rounded" alt="Restaurant 3" style="height: 400px; object-fit: cover;">
+                        
+                    </div>
+                </div>
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#partnerCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#partnerCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+       
+    </div>
+</div>
+
+<!-- Partner Restaurants Section -->
+<div class="container" id="restaurants">
+    <h2 class="text-center mb-4">Our Partner Restaurants</h2>
+
+    @if ($restaurants->isEmpty())
+        <div class="alert alert-warning text-center">
+            <p>No restaurants available at the moment. Check back soon!</p>
+        </div>
+    @else
+        <div class="row">
+            @foreach ($restaurants as $restaurant)
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <!-- Restaurant Image -->
+                        <img src="{{ $restaurant->image ? asset('storage/' . $restaurant->image) : asset('assets/images/default.jpg') }}" 
+                        class="card-img-top" 
+                        alt="{{ $restaurant->name }}" 
+                        style="width: 410px; height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $restaurant->name }}</h5>
+                            <p class="card-text">{{ Str::limit($restaurant->description, 100) }}</p>
+                            <ul class="list-unstyled">
+                                <li><strong>Address:</strong> {{ $restaurant->address }}</li>
+                                <li><strong>Phone:</strong> {{ $restaurant->phone }}</li>
+                                <li><strong>Email:</strong> {{ $restaurant->email }}</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{{ route('restaurants.show', $restaurant->id) }}" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endif
+</div>
+
 
 <!-- Mission Statement Section -->
 <div class="container-fluid py-5 mt-5 mb-5" style="background: linear-gradient(135deg, #f5f7fa, #c3cfe2);">
@@ -41,76 +136,26 @@
 </div>
 
 
-<!-- Featured Partners Slider -->
-<div id="partnerCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <!-- Slide 1 -->
-        <div class="carousel-item active">
-            <img src="{{ asset('assets/images/food-rescue-1.png') }}" class="d-block w-100" alt="Restaurant 1" style="height: 400px; object-fit: cover;">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Partner Restaurant: Restaurant 1</h5>
-                <p>Helping us provide meals to the needy.</p>
-            </div>
-        </div>
-        <!-- Add more slides as needed -->
-        <div class="carousel-item">
-            <img src="{{ asset('assets/images/food-rescue-2.jpg') }}" class="d-block w-100" alt="Restaurant 2" style="height: 400px; object-fit: cover;">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Partner Restaurant: Restaurant 2</h5>
-                <p>Working with us to combat food waste.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="{{ asset('assets/images/food-rescue-3.jpg') }}" class="d-block w-100" alt="Restaurant 3" style="height: 400px; object-fit: cover;">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Partner Restaurant: Restaurant 3</h5>
-                <p>Helping to reduce food waste and provide meals.</p>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#partnerCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#partnerCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
 
 
-<!-- Partner Restaurants Section -->
-<div class="container" id="restaurants">
-    <h2 class="text-center mb-4">Our Partner Restaurants</h2>
 
-    @if ($restaurants->isEmpty())
-        <div class="alert alert-warning text-center">
-            <p>No restaurants available at the moment. Check back soon!</p>
-        </div>
-    @else
-        <div class="row">
-            @foreach ($restaurants as $restaurant)
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm h-100">
-                        <!-- Restaurant Image -->
-                        <img src="{{ $restaurant->image ? asset('storage/' . $restaurant->image) : asset('assets/images/default.jpg') }}" class="card-img-top" alt="{{ $restaurant->name }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $restaurant->name }}</h5>
-                            <p class="card-text">{{ Str::limit($restaurant->description, 100) }}</p>
-                            <ul class="list-unstyled">
-                                <li><strong>Address:</strong> {{ $restaurant->address }}</li>
-                                <li><strong>Phone:</strong> {{ $restaurant->phone }}</li>
-                                <li><strong>Email:</strong> {{ $restaurant->email }}</li>
-                            </ul>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="{{ route('restaurants.show', $restaurant->id) }}" class="btn btn-primary">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    @endif
-</div>
+
+
+
+
+
+
+
+
+<!-- Optional Styling -->
+<style>
+    .carousel-inner img {
+        border-radius: 10px;
+    }
+</style>
+
+
+
+
 
 @endsection
