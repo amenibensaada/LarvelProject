@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\front\HomeController;
+use App\Http\Controllers\ProductController;
 
 // Redirect root to login
 Route::get('/', function () {
@@ -40,3 +41,6 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 
 // Logout route for both users and admins
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+// Product Routes
+Route::resource('products', ProductController::class);
