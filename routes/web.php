@@ -42,5 +42,6 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 // Logout route for both users and admins
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-
 Route::resource('products', ProductController::class);
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');

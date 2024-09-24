@@ -10,10 +10,18 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     // Display a list of products
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('category')->get();
-        return view('products.index', compact('products'));
+        $categories = Category::all();
+        $query = Product::with('category');
+
+        if ($request->has('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        $products = $query->get();
+
+        return view('products.index', compact('products', 'categories'));
     }
 
     // Show form for creating a new product
