@@ -40,20 +40,20 @@
        <li class="nav-item nav-category">Products</li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-toggle="collapse" href="#restaurants-menu" aria-controls="restaurants-menu">
-                <i class="menu-icon mdi mdi-silverware-fork-knife"></i>
+                <i class="menu-icon mdi mdi-food-apple"></i>
                 <span class="menu-title">My Products</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="restaurants-menu">
                 <ul class="nav flex-column sub-menu" >
-                    <!-- Show Products -->
-                    <li class="nav-item">
+                 
+                    <div class="nav-item">
                         <a class="nav-link" href="{{ route('products.index') }}"">
                             <i class="menu-icon mdi mdi-eye"></i>
                             List Products
                         </a>
-                    </li>
-                    <!-- Add New Product -->
+</div>
+                    
                     <li class="nav-item">
                         <a class="nav-link"  href="{{ route('products.create') }}">
                             <i class="menu-icon mdi mdi-plus-circle"></i>
