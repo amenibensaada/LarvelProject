@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\AssociationController;
+
 use App\Http\Controllers\front\HomeController;
 
 // Redirect root to login
@@ -31,6 +33,15 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/restaurants/{id}/edit', [RestaurantController::class, 'edit'])->name('restaurants.edit'); // Form to edit restaurant
     Route::put('/restaurants/{id}', [RestaurantController::class, 'update'])->name('restaurants.update'); // Update restaurant details
     Route::delete('/restaurants/{id}', [RestaurantController::class, 'destroy'])->name('restaurants.destroy'); // Delete restaurant
+
+    Route::resource('/associations', AssociationController::class);
+    Route::get('/associations/create', [AssociationController::class, 'create'])->name('associations.create'); // Form to apply as a restaurant partner
+    Route::get('/associations/all', [AssociationController::class, 'allAssociations'])->name('Associations.all'); // View all restaurants
+    Route::get('/associations/{id}', [AssociationController::class, 'show'])->name('associations.show'); // View single restaurant details
+    Route::delete('/associations/{id}', [AssociationController::class, 'destroy'])->name('associations.destroy'); // Delete restaurant
+
+
+
 });
 
 // Protect Admin (Back Office) Routes
