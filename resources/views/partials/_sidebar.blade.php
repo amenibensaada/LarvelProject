@@ -1,3 +1,9 @@
+
+<head>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-ABcdEFGHIJKLMNOPQRsTUVWXYZZ12345A" crossorigin="anonymous">
+</head>
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <!-- Dashboard -->
@@ -32,12 +38,43 @@
                             Add Restaurant
                         </a>
                     </li>
+                </li>
+
                 </ul>
             </div>
         </li>
+    <!-- Livraison section  -->
+<li class="nav-item nav-category">
+    <label for="livraisons"></label>
+</li>
+<li class="nav-item">
+    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#livraison-menu" aria-controls="livraison-menu">
+        <i class="menu-icon fas fa-truck"></i> <!-- Changed icon -->
+        <span class="menu-title">Livraison</span>
+        <i class="menu-arrow"></i>
+    </a>
+    <div class="collapse" id="livraison-menu">
+        <ul class="nav flex-column sub-menu">
+            <!-- Show Livraisons -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('livraisons.index') }}">
+                    <i class="menu-icon fas fa-eye"></i> <!-- Changed icon -->
+                    Livraisons
+                </a>
+            </li>
+            <!-- Add New Livraison -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('livraisons.create') }}">
+                    <i class="menu-icon fas fa-plus-circle"></i> <!-- Changed icon -->
+                    Ajouter Livraison
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
 
-      
 
-       
+
+
     </ul>
 </nav>

@@ -20,6 +20,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+
 </head>
 <body class="with-welcome-text">
     <div id="app" class="container-scroller">
