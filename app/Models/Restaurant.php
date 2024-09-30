@@ -18,4 +18,11 @@ class Restaurant extends Model
         'image',
 
     ];
+     /**
+     * Get the items for the restaurant.
+     */
+    public function items()
+    {
+        return $this->hasMany(RestaurantItem::class); // Restaurant has many items
+    }
 }
