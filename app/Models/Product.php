@@ -33,5 +33,20 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // Additional relationships and logic can be added here
+    // Define the relationship with the ProductStock model
+    public function productStock()
+    {
+        return $this->hasOne(ProductStock::class);
+    }
+
+    // Additional attributes and logic can be added here
+    public function getStockQuantityAttribute()
+    {
+        return $this->productStock ? $this->productStock->quantity : 0;
+    }
+
+    public function getStockUnitAttribute()
+    {
+        return $this->productStock ? $this->productStock->unit : null;
+    }
 }

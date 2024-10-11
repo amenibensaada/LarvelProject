@@ -66,6 +66,31 @@
             </div>
         </li>
 
-       
+        <!-- Add this inside the <ul class="nav"> -->
+        <li class="nav-item nav-category">Inventory</li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#product-stocks-menu" aria-controls="product-stocks-menu">
+                <i class="menu-icon mdi mdi-package-variant"></i>
+                <span class="menu-title">Product Stocks</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="product-stocks-menu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('product_stocks.index') }}">
+                            <i class="menu-icon mdi mdi-eye"></i>
+                            View Stocks
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('product_stocks.create') }}">
+                            <i class="menu-icon mdi mdi-plus-circle"></i>
+                            Add Stock
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
     </ul>
 </nav>
