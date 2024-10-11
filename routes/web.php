@@ -7,6 +7,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductStockController;
+use App\Http\Controllers\Admin\CategoryController;
 
 // Redirect root to login
 Route::get('/', function () {
@@ -37,7 +38,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 // Protect Admin (Back Office) Routes
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('dashboard', [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('dashboard', [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('categories', CategoryController::class);
 });
 
 // Logout route for both users and admins
