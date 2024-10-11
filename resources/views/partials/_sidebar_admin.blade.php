@@ -39,11 +39,11 @@
                 <span class="menu-title">Documentation</span>
             </a>
         </li>
-        <li class="nav-item nav-category">Categories</li>
+        <li class="nav-item nav-category">Product Categories</li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="categories">
                 <i class="menu-icon mdi mdi-format-list-bulleted"></i>
-                <span class="menu-title">Categories</span>
+                <span class="menu-title">Product Categories</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="categories">
