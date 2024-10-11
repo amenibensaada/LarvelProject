@@ -26,10 +26,6 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="stock">Stock</label>
-            <input type="number" class="form-control" id="stock" name="stock" value="{{ $product->stock }}" required>
-        </div>
-        <div class="form-group">
             <label for="expiration_date">Expiration Date</label>
             <input type="date" class="form-control" id="expiration_date" name="expiration_date" value="{{ $product->expiration_date->format('Y-m-d') }}" required>
         </div>

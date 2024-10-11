@@ -37,7 +37,7 @@
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text">Description: {{ $product->description }}</p>
                     <p class="card-text"><strong>Category: {{ $product->category->name }}</strong></p>
-                    <p class="card-text">Stock: {{ $product->stock }}</p>
+                    <p class="card-text">Stock: {{ $product->stock_quantity }} {{ $product->stock_unit }}</p>
                     <p class="card-text">Expiration Date: {{ $product->expiration_date }}</p>
 
                     <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">Edit</a>

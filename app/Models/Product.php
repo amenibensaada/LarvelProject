@@ -12,7 +12,6 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
-        'stock',
         'image',
         'user_id',
         'category_id',
@@ -47,6 +46,6 @@ class Product extends Model
 
     public function getStockUnitAttribute()
     {
-        return $this->productStock ? $this->productStock->unit : null;
+        return $this->productStock ? $this->productStock->unit : '';
     }
 }
