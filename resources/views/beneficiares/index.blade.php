@@ -10,42 +10,39 @@
     <h1 class="text-center mb-4"></h1>
 
     <div class="row">
-        @foreach ($associations as $association)
+        @foreach ($beneficiaires as $beneficiaire)
             <div class="col-md-4 mb-4">
                 <div class="carad shadow-sm">
                     <!-- association Image -->
-                     @if($association->image)
-                        <img src="{{ asset('storage/' . $association->image) }}" alt="{{ $association->name }}" class="card-img-top" style="height: 200px; object-fit: cover;">
-                    @else
-                        <img src="{{ asset('storage/association/default.jpg') }}" alt="No Image" class="card-img-top" style="height: 200px; object-fit: cover;">
-                    @endif 
+                    
                     
                     <div class="card-body">
-                        <h5 class="card-title">{{ $association->nom }}</h5>
+                        <h5 class="card-title">{{ $beneficiaire->nom }}</h5>
                         <p class="card-text">
-                            <strong>addresse:</strong> {{ $association->adresse }}<br>
-                            <strong>Phone:</strong> {{ $association->telephone }}<br>
-                            <strong>Email:</strong> {{ $association->email }}
-                        </p>
+                            <strong>besoins:</strong> {{ $beneficiaire->besoins }}<br>
+                            <p><strong>Association:</strong> {{ $associations->find($beneficiaire->associationId)->nom ?? 'Non spécifiée' }}</p>
+                                </p>
                     </div>
 
                     <div class="card-footer d-flex justify-content-between">
-                        <a href="{{ route('associations.edit', $association->id) }}" class="btn btn-sm btn-warning">
-                            <i class="mdi mdi-pencil"></i> Edit
+                        <a href="{{ route('beneficiares.edit', $beneficiaire->id) }}" class="btn btn-sm btn-warning">
+                            <i class="mdi mdi-pencil"></i> Modifier
                         </a>
                         
-         <form action="{{ route('associations.destroy', $association->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-danger">
-                        <i class="mdi mdi-delete"></i> Delete
-                    </button>
-        </form>
+                        <form action="{{ route('beneficiares.destroy', $beneficiaire->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="mdi mdi-delete"></i> Supprimer
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
+
+      
 
     <!-- No restaurants fallback -->
     @if($associations->isEmpty())

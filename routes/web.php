@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\AssociationController;
-
+use App\Http\Controllers\BeneficiaireController;
 use App\Http\Controllers\front\HomeController;
 
 // Redirect root to login
@@ -39,8 +39,15 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/associations/all', [AssociationController::class, 'allAssociations'])->name('Associations.all'); // View all restaurants
     Route::get('/associations/{id}', [AssociationController::class, 'show'])->name('associations.show'); // View single restaurant details
     Route::delete('/associations/{id}', [AssociationController::class, 'destroy'])->name('associations.destroy'); // Delete restaurant
+    Route::put('/associations/{id}', [AssociationController::class, 'update'])->name('associations.update'); // Update restaurant details
+    Route::get('/associations/{id}/edit', [RestaurantController::class, 'edit'])->name('associations.edit'); // Form to edit restaurant
 
+    Route::resource('/beneficiares', BeneficiaireController::class);
+    Route::get('/beneficiares/create', [BeneficiaireController::class, 'create'])->name('beneficiares.create'); // Form to apply as a restaurant partner
+    Route::get('/beneficiares/all', [BeneficiaireController::class, 'allBeneficiare'])->name('Beneficiares.all'); // View all restaurants
+    Route::get('/beneficiares/{id}', [BeneficiaireController::class, 'show'])->name('beneficiares.show'); // View single restaurant details
 
+   
 
 });
 

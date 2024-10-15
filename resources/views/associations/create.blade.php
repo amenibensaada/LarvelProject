@@ -3,7 +3,7 @@
 @section('content')
 <!-- Hero Section -->
 <!-- Hero Section with Form -->
-<div class="hero-section position-relative" style="background: url('{{ asset('assets/images/partner.png') }}') no-repeat center center; background-size: cover; padding: 80px 0 120px;">
+<div class="hero-section position-relative" style="background: url('{{ asset('assets/images/aziz2.png') }}') no-repeat center center; background-size: cover; padding: 80px 0 120px;">
     <!-- Overlay -->
      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
     
@@ -71,7 +71,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Why We Should help ?</h5>
                         <p class="card-text">These groups provide support, encourage collaboration, and ultimately enrich our lives through shared experiences and a sense of belonging.</p>
-                        <img src="{{ asset('assets/images/helping.jpg') }}" class="img-fluid rounded shadow-sm mt-3" alt="Helping Hands">
+                        <img src="{{ asset('assets/images/aziz.jpg') }}" class="img-fluid rounded shadow-sm mt-3" alt="Helping Hands">
                     </div>
                 </div>
             </div>

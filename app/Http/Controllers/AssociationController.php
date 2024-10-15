@@ -90,7 +90,8 @@ class AssociationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $association = Association::findOrFail($id);
+        return view('associations.edit', compact('association'));
     }
 
     /**
@@ -102,7 +103,45 @@ class AssociationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $association = Association::findOrFail($id);
+    
+        $request->validate([
+            'nom' => 'required',
+            'email' => 'required|email|unique:associations,email,' . $association->id,
+            'telephone' => 'required',
+            'adresse' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' // Validate image file
+
+            
+        ]);
+    
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($association->image) {
+                // Only attempt to delete if the path is valid
+                if (Storage::disk('public')->exists($association->image)) {
+                    Storage::disk('public')->delete($association->image);
+                }
+            }
+
+            // Store the new image
+            $imagePath = $request->file('image')->store('association_images', 'public');
+        } else {
+            // Keep the old image if no new one is uploaded
+            $imagePath = $association->image;
+        }
+    
+        // Update restaurant
+        $association->update([
+            'nom' => $request->input('nom'),
+            'adresse' => $request->input('adresse'),
+            'telephone' => $request->input('telephone'),
+            'email' => $request->input('email'),
+            'image' => $imagePath, // Save image path to the database
+        ]);
+    
+        return redirect()->route('associations.index')->with('success', 'association updated successfully.');
     }
 
     /**
