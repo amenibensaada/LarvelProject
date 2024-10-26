@@ -4,11 +4,20 @@
 <div class="container-fluid">
     <h1 class="h3 mb-2 text-gray-800">Categories</h1>
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class=" font-weight-bold text-primary mb-20">All Categories</h6>
-            <a href="{{ route('categories.create') }}" class="btn btn-primary btn-sm float-right">Add New Category</a>
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="font-weight-bold text-primary mb-0">All Categories</h6>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary btn-sm">Add New Category</a>
         </div>
         <div class="card-body">
+            <form action="{{ route('categories.index') }}" method="GET" class="mb-3">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search categories..." value="{{ request('search') }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary text-white" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -36,7 +45,14 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="d-flex justify-content-center mt-4">
+                {{ $categories->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </div>
 </div>
 @endsection
+
+
+

@@ -8,9 +8,17 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        $query = Category::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where('name', 'LIKE', "%{$searchTerm}%");
+        }
+
+        $categories = $query->paginate(10);
+
         return view('back.categories.index', compact('categories'));
     }
 
@@ -56,3 +64,5 @@ class CategoryController extends Controller
             ->with('success', 'Category deleted successfully');
     }
 }
+
+
