@@ -48,9 +48,13 @@ class BeneficiaireController extends Controller
     public function store(Request $request) {
         $request->validate([
             'nom' => 'required',
-            'besoins' => 'required',
+            'besoins' => 'required|string|min:6',
             'associationId' => 'required',
 
+        ],[
+            'nom.required' => 'Le nom du bénéficiaire est requis.',
+            'besoins.required' => 'Les besoins sont requis.',
+            'associationId.required' => 'Veuillez sélectionner une association valide.',
         ]);
 
         
@@ -85,10 +89,14 @@ class BeneficiaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    
+     public function edit($id)
+     {
+         $beneficiaire = Beneficiaire::findOrFail($id); // Récupère le bénéficiaire
+         $associations = Association::all(); // Récupérer toutes les associations
+         return view('beneficiares.edit', compact('beneficiaire', 'associations'));// Passe le bénéficiaire et les associations à la vue
+     }
+     
 
     /**
      * Update the specified resource in storage.
@@ -97,10 +105,25 @@ class BeneficiaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    
+      public function update(Request $request, $id)
+        {
+            $beneficiaire = Beneficiaire::findOrFail($id); // Trouver le bénéficiaire par son ID
+        
+            $request->validate([
+                'nom' => 'required',
+                'besoins' => 'required',
+                'associationId' => 'required',
+            ]);
+        
+            $beneficiaire->update([
+                'nom' => $request->input('nom'),
+                'besoins' => $request->input('besoins'),
+                'associationId' => $request->input('associationId'),
+            ]);
+        
+            return redirect()->route('beneficiares.index')->with('success', 'Bénéficiaire mis à jour avec succès.');
+        }
 
     /**
      * Remove the specified resource from storage.

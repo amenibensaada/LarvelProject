@@ -26,28 +26,40 @@
                     @csrf
 
 
-                        <!-- Nom -->
-                        <div class="form-group mb-3">
-                            <label for="nom" class="form-label">Nom</label>
-                            <input type="text" name="nom" class="form-control" value="{{ old('nom') }}" required>
-                        </div>
+                      <!-- Beneficiaire Name -->
+<div class="form-group mb-3">
+    <label for="name" class="form-label"><i class="mdi mdi-storefront"></i> Beneficiaire Name</label>
+    <input type="text" name="nom" class="form-control rounded-pill shadow-sm" value="{{ old('nom', $beneficiaire->nom ?? '') }}" required>
+    @error('nom')
+        <div class="text-danger">{{ $message }}</div>
+    @enderror
+</div>
 
-                        <!-- Besoins -->
-                        <div class="form-group mb-3">
-                            <label for="besoins" class="form-label">Besoins</label>
-                            <input type="text" name="besoins" class="form-control" value="{{ old('besoins') }}" required>
-                        </div>
+<!-- Besoins -->
+<div class="form-group mb-3">
+    <label for="besoins" class="form-label"><i class="mdi mdi-map-marker"></i> Besoins</label>
+    <input type="text" name="besoins" class="form-control rounded-pill shadow-sm" value="{{ old('besoins', $beneficiaire->besoins ?? '') }}" required>
+    @error('besoins')
+        <div class="text-danger">{{ $message }}</div>
+    @enderror
+</div>
 
-                        <!-- Association ID (Liste déroulante) -->
-                        <div class="form-group mb-3">
-                            <label for="associationId" class="form-label">Association</label>
-                            <select name="associationId" class="form-control" required>
-                                <option value="">Sélectionnez une association</option>
-                                @foreach ($associations as $association)
-                                    <option value="{{ $association->id }}">{{ $association->nom }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+<!-- Association Selection -->
+<div class="form-group mb-3">
+    <label for="associationId" class="form-label"><i class="mdi mdi-account"></i> Association</label>
+    <select name="associationId" class="form-control rounded-pill shadow-sm" required>
+        <option value="">Select Association</option>
+        @foreach($associations as $association)
+            <option value="{{ $association->id }}" {{ (old('associationId', $beneficiaire->associationId ?? '') == $association->id) ? 'selected' : '' }}>
+                {{ $association->nom }}
+            </option>
+        @endforeach
+    </select>
+    @error('associationId')
+        <div class="text-danger">{{ $message }}</div>
+    @enderror
+</div>
+
 
                         <div class="d-grid">
                             <button type="submit" class="btn btn-lg btn-success">
@@ -60,15 +72,4 @@
         </div>
     </div>
 </div>
-
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 @endsection
