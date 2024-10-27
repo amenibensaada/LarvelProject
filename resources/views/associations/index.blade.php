@@ -31,7 +31,7 @@
                     <!-- association Image -->
                      @if($association->image)
                         <img src="{{ asset('storage/' . $association->image) }}" alt="{{ $association->name }}" class="card-img-top" style="height: 200px; object-fit: cover;">
-                    @else
+                    @else  
                         <img src="{{ asset('storage/association/default.jpg') }}" alt="No Image" class="card-img-top" style="height: 200px; object-fit: cover;">
                     @endif 
                     

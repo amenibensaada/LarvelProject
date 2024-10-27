@@ -70,6 +70,7 @@ class AssociationController extends Controller
                 return back()->withErrors(['image' => 'Image upload failed.']);
             }
         }
+        
     
         // Crée l'association avec les noms de champs corrects
         Association::create([
