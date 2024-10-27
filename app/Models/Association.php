@@ -14,8 +14,10 @@ class Association extends Model
         'telephone',
         'email',
         'image', 
-
-
-
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

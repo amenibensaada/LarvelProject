@@ -12,6 +12,8 @@ use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\TransporteurController;
 use App\Http\Controllers\LivraisonController;
 use App\Http\Controllers\ReclamationController;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\ReviewController;
 
 
 
@@ -71,6 +73,28 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // Route::get('/items/{item}/edit', [App\Http\Controllers\RestaurantItemController::class, 'edit'])->name('restaurant_items.edit'); // Form to edit an item
     Route::put('/items/{item}', [App\Http\Controllers\RestaurantItemController::class, 'update'])->name('restaurant_items.update'); // Update existing item
     Route::delete('/items/{item}', [App\Http\Controllers\RestaurantItemController::class, 'destroy'])->name('restaurant_items.destroy'); // Delete an item
+   
+
+
+    
+    Route::get('/donations', [DonationController::class, 'index'])->name('donations.index'); // View user restaurants
+    Route::get('/donations/create', [DonationController::class, 'create'])->name('donations.create'); // Form to apply as a restaurant partner
+    Route::post('/donations', [DonationController::class, 'store'])->name('donations.store'); // Store restaurant details
+    Route::get('/donations/{id}', [DonationController::class, 'show'])->name('donations.show'); // View single restaurant details
+    Route::get('/donations/{id}/edit', [DonationController::class, 'edit'])->name('donations.edit'); // Form to edit restaurant
+    Route::put('/donations/{id}', [DonationController::class, 'update'])->name('donations.update'); // Update restaurant details
+    Route::delete('/donations/{id}', [DonationController::class, 'destroy'])->name('donations.destroy'); // Delete restaurant    
+
+    Route::put('/donations/add_item/{itemId}/{donationId}', [DonationController::class, 'add_to_donation'])->name('donations.remove_from_donation'); // remove item
+    Route::put('/donations/remove_item/{itemId}', [DonationController::class, 'remove_from_donation'])->name('donations.add_to_donation'); // add item
+
+    Route::get('reviews/{id}', [ReviewController::class, 'index'])->name('reviews.index'); 
+    Route::put('reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update'); 
+    Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::post('/reviews/{id}', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::get('reviews/{id}/edit', [ReviewController::class, 'edit'])->name('reviews.edit'); 
+    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+
 });
 
 
@@ -127,6 +151,16 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('categories', CategoryController::class);
     Route::get('/events', [EvenementController::class, 'adminindex'])->name('events.indexadmin');
+
+
+
+
+    Route::get('donations', [DonationController::class, 'adminIndex'])->name('admin.donations.index'); 
+    Route::get('donations/{id}/edit', [DonationController::class, 'adminEdit'])->name('admin.donations.edit'); 
+    Route::put('donations/{id}', [DonationController::class, 'adminUpdate'])->name('admin.donations.update'); 
+    
+    Route::get('reviews', [ReviewController::class, 'adminIndex'])->name('admin.reviews.index'); 
+    Route::delete('/reviews/{id}', [ReviewController::class, 'adminDestroy'])->name('admin.reviews.destroy'); 
 });
 
 
