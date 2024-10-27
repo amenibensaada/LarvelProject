@@ -65,5 +65,29 @@
                 <span class="menu-title">Documentation</span>
             </a>
         </li>
+        <li class="nav-item nav-category">Product Categories</li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="categories">
+                <i class="menu-icon mdi mdi-format-list-bulleted"></i>
+                <span class="menu-title">Product Categories</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="categories">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('categories.index') }}">
+                            <i class="menu-icon mdi mdi-view-list"></i>
+                            List Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('categories.create') }}">
+                            <i class="menu-icon mdi mdi-plus-circle-outline"></i>
+                            Add Category
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
     </ul>
 </nav>

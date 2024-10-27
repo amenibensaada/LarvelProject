@@ -5,6 +5,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\front\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductStockController;
+use App\Http\Controllers\Admin\CategoryController;
 
 // Redirect root to login
 Route::get('/', function () {
@@ -46,8 +49,16 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/restaurants', [RestaurantController::class, 'adminStore'])->name('back.restaurant.store');
     Route::put('/restaurants/{id}', [RestaurantController::class, 'adminUpdate'])->name('back.restaurant.update');
     Route::delete('/restaurants/{id}', [RestaurantController::class, 'adminDestroy'])->name('back.restaurant.destroy');
+    Route::get('dashboard', [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('categories', CategoryController::class);
 });
 
 
 // Logout route for both users and admins
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::resource('products', ProductController::class);
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+Route::resource('product_stocks', \App\Http\Controllers\ProductStockController::class);
