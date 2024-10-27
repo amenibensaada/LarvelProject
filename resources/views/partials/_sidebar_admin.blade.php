@@ -1,50 +1,45 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-        <!-- Dashboard -->
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                <i class="mdi mdi-grid-large menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
-            <!-- Events Section -->
-            <li class="nav-item nav-category">Events</li>
+
+        <!-- Events Section -->
+        <li class="nav-item nav-category">Events</li>
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#restaurants-menu" aria-controls="restaurants-menu">
-            <i class="menu-icon mdi mdi-ticket"></i>
-            <span class="menu-title">My Events</span>
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#events-menu" aria-expanded="false" aria-controls="events-menu">
+                <i class="menu-icon mdi mdi-ticket"></i>
+                <span class="menu-title">My Events</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="restaurants-menu">
-                <ul class="nav flex-column sub-menu" >
-                    <!-- Show Events -->
+            <div class="collapse" id="events-menu">
+                <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('events.index') }}">
                             <i class="menu-icon mdi mdi-eye"></i>
                             My Events
                         </a>
                     </li>
-                    <!-- Add New Event -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('events.create') }}">
                             <i class="menu-icon mdi mdi-plus-circle"></i>
                             Add Event
                         </a>
                     </li>
+                </ul>
+            </div>
+        </li>
 
-                    
-        </li> --}}
+        <!-- Livraison Section -->
         <li class="nav-item nav-category">Livraison</li>
-         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#associations-menu" aria-controls="associations-menu">
-                <i class="menu-icon mdi mdi-account-group"></i>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#livraisons-menu" aria-expanded="false" aria-controls="livraisons-menu">
+                <i class="menu-icon mdi mdi-truck"></i>
                 <span class="menu-title">My Livraison</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="associations-menu">
+            <div class="collapse" id="livraisons-menu">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('livraisons.livraison') }}">
@@ -52,76 +47,24 @@
                             My Livraison
                         </a>
                     </li>
-                
                 </ul>
             </div>
-        </li> 
-       
+        </li>
+
+        <!-- Associations Section -->
         <li class="nav-item nav-category">Association</li>
-         <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#associations-menu" aria-controls="associations-menu">
-        <i class="menu-icon mdi mdi-account-group"></i>
-        <span class="menu-title">My Associations</span>
-        <i class="menu-arrow"></i>
-    </a>
-    <div class="collapse" id="associations-menu">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('associationsBack.index') }}">
-                    <i class="menu-icon mdi mdi-eye"></i>
-                    My Associations
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('associations.create') }}">
-                    <i class="menu-icon mdi mdi-plus-circle"></i>
-                    Add Association
-                </a>
-            </li>
-        </ul>
-    </div>
-</li> 
-<li class="nav-item"> 
-    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#beneficiares-menu" aria-controls="beneficiares-menu">         
-        <i class="menu-icon mdi mdi-account-group"></i>         
-        <span class="menu-title">My Beneficiaire</span>         
-        <i class="menu-arrow"></i>     
-    </a>     
-    <div class="collapse" id="beneficiares-menu"> <!-- Corrigé ici -->
-        <ul class="nav flex-column sub-menu">             
-            <li class="nav-item">                 
-                <a class="nav-link" href="{{ route('beneficiairesBack.index') }}">                     
-                    <i class="menu-icon mdi mdi-eye"></i>                     
-                    My beneficiares                 
-                </a>             
-            </li>             
-            <li class="nav-item">                 
-                <a class="nav-link" href="{{ route('beneficiares.create') }}">                     
-                    <i class="menu-icon mdi mdi-plus-circle"></i>                     
-                    Add beneficiare                 
-                </a>             
-            </li>         
-        </ul>     
-    </div> 
-</li>
-
-        </li> 
-
-        <!-- Restaurants Management Section -->
-        <li class="nav-item nav-category">Restaurants</li>
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#admin-restaurants-menu" aria-controls="admin-restaurants-menu">
-                <i class="menu-icon mdi mdi-silverware-fork-knife"></i>
-                <span class="menu-title"> Restaurants</span>
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#associations-menu" aria-expanded="false" aria-controls="associations-menu">
+                <i class="menu-icon mdi mdi-account-group"></i>
+                <span class="menu-title">My Associations</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="admin-restaurants-menu">
+            <div class="collapse" id="associations-menu">
                 <ul class="nav flex-column sub-menu">
-                    <!-- View All Restaurants -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('back.restaurant.index') }}">
+                        <a class="nav-link" href="{{ route('associationsBack.index') }}">
                             <i class="menu-icon mdi mdi-eye"></i>
-                            All Restaurants
+                            My Associations
                         </a>
                     </li>
                     
@@ -129,87 +72,85 @@
             </div>
         </li>
 
-        <!-- Event Categories Section -->
-<li class="nav-item nav-category">Event Categories</li>
-<li class="nav-item">
-    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#categories-menu" aria-controls="categories-menu">
-        <i class="menu-icon mdi mdi-view-list"></i>
-        <span class="menu-title">Event Categories</span>
-        <i class="menu-arrow"></i>
-    </a>
-    <div class="collapse" id="categories-menu">
-        <ul class="nav flex-column sub-menu" >
-            <!-- Show Event Categories -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('evenement-categories.index') }}">
-                    <i class="menu-icon mdi mdi-eye"></i>
-                    View Categories
-                </a>
-            </li>
-            <!-- Add New Event Category -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('evenement-categories.create') }}">
-                    <i class="menu-icon mdi mdi-plus-circle"></i>
-                    Add Category
-                </a>
-            </li>
-        </ul>
-    </div>
-</li>
-
-
-        <!-- <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-                <i class="menu-icon mdi mdi-card-text-outline"></i>
-                <span class="menu-title">Form elements</span>  -->
-        <!-- Users Management Section -->
-        <li class="nav-item nav-category">Users</li>
+        <!-- Beneficiaire Section -->
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#admin-users-menu" aria-controls="admin-users-menu">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#beneficiares-menu" aria-expanded="false" aria-controls="beneficiares-menu">
                 <i class="menu-icon mdi mdi-account-multiple"></i>
-                <span class="menu-title">Manage Users</span>
+                <span class="menu-title">My Beneficiaire</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="admin-users-menu">
+            <div class="collapse" id="beneficiares-menu">
                 <ul class="nav flex-column sub-menu">
-                    {{-- <!-- View All Users -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.users.index') }}">
-                            <i class="menu-icon mdi mdi-account"></i>
-                            All Users
+                        <a class="nav-link" href="{{ route('beneficiairesBack.index') }}">
+                            <i class="menu-icon mdi mdi-eye"></i>
+                            My Beneficiaires
                         </a>
                     </li>
-                    <!-- Add New User (Optional) -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.users.create') }}">
-                            <i class="menu-icon mdi mdi-account-plus"></i>
-                            Add User
-                        </a>
-                    </li> --}}
+                   
                 </ul>
             </div>
         </li>
 
-        <!-- Documentation (if needed for Admin) -->
+        <!-- Restaurants Section -->
+        <li class="nav-item nav-category">Restaurants</li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="menu-icon mdi mdi-file-document"></i>
-                <span class="menu-title">Documentation</span>
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#restaurants-menu" aria-expanded="false" aria-controls="restaurants-menu">
+                <i class="menu-icon mdi mdi-silverware-fork-knife"></i>
+                <span class="menu-title">Restaurants</span>
+                <i class="menu-arrow"></i>
             </a>
-        </li> -->
+            <div class="collapse" id="restaurants-menu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('back.restaurant.index') }}">
+                            <i class="menu-icon mdi mdi-eye"></i>
+                            All Restaurants
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
+
+        <!-- Event Categories Section -->
+        <li class="nav-item nav-category">Event Categories</li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#event-categories-menu" aria-expanded="false" aria-controls="event-categories-menu">
+                <i class="menu-icon mdi mdi-view-list"></i>
+                <span class="menu-title">Event Categories</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="event-categories-menu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('evenement-categories.index') }}">
+                            <i class="menu-icon mdi mdi-eye"></i>
+                            View Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('evenement-categories.create') }}">
+                            <i class="menu-icon mdi mdi-plus-circle"></i>
+                            Add Category
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Product Categories Section -->
         <li class="nav-item nav-category">Product Categories</li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="categories">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#product-categories-menu" aria-expanded="false" aria-controls="product-categories-menu">
                 <i class="menu-icon mdi mdi-format-list-bulleted"></i>
                 <span class="menu-title">Product Categories</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="categories">
+            <div class="collapse" id="product-categories-menu">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('categories.index') }}">
-                            <i class="menu-icon mdi mdi-view-list"></i>
+                            <i class="menu-icon mdi mdi-eye"></i>
                             List Categories
                         </a>
                     </li>
@@ -222,5 +163,7 @@
                 </ul>
             </div>
         </li>
+        
+       
     </ul>
 </nav>
