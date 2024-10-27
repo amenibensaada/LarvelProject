@@ -26,13 +26,6 @@
                                 <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="stock" class="form-label">Stock</label>
-                                <input type="number" class="form-control" id="stock" name="stock" required>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
                                 <label for="category_id" class="form-label">Category</label>
                                 <select class="form-select" id="category_id" name="category_id" required>
                                     <option value="" disabled selected>Please Select</option>
@@ -41,7 +34,9 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
 
+                        <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="expiration_date" class="form-label">Expiration Date</label>
                                 <input type="date" class="form-control" id="expiration_date" name="expiration_date" required>

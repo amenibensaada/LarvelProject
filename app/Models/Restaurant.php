@@ -18,6 +18,13 @@ class Restaurant extends Model
         'user_id',
         'status'
     ];
+     /**
+     * Get the items for the restaurant.
+     */
+    public function items()
+    {
+        return $this->hasMany(RestaurantItem::class); // Restaurant has many items
+    }
 
     // Define the relationship with the User model
     public function user()

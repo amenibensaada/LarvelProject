@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('Products', function (Blueprint $table) {
-            //
-            $table->string('category');
-            $table->date('expiration_date')->nullable();
-
-
+        Schema::create('transporteurs', function (Blueprint $table) {
+            $table->id();
+            $table->string('nom');
+            $table->string('telephone');
+            $table->string('email')->unique();
+            $table->timestamps();
         });
-        
     }
 
     /**
@@ -30,9 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('Products', function (Blueprint $table) {
-            //
-            $table->decimal('price', 8, 2); 
-        });
+        Schema::dropIfExists('transporteurs');
     }
 };

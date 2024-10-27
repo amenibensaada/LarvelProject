@@ -9,11 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    // Display a list of products
     public function index(Request $request)
     {
         $categories = Category::all();
-        $query = Product::with('category');
+        $query = Product::with(['category', 'productStock']);
 
         if ($request->has('category')) {
             $query->where('category_id', $request->category);
@@ -24,20 +23,17 @@ class ProductController extends Controller
         return view('products.index', compact('products', 'categories'));
     }
 
-    // Show form for creating a new product
     public function create()
     {
         $categories = Category::all();
         return view('products.create', compact('categories'));
     }
 
-    // Store a new product
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',
-            'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'expiration_date' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -51,7 +47,6 @@ class ProductController extends Controller
         Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'stock' => $request->input('stock'),
             'category_id' => $request->input('category_id'),
             'expiration_date' => $request->input('expiration_date'),
             'image' => $imagePath,
@@ -77,7 +72,6 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',
-            'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'expiration_date' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -95,7 +89,6 @@ class ProductController extends Controller
         $product->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'stock' => $request->input('stock'),
             'category_id' => $request->input('category_id'),
             'expiration_date' => $request->input('expiration_date'),
             'image' => $imagePath

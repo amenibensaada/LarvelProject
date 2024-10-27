@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();  
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->decimal('price', 8, 2); 
-            $table->integer('stock');  
-            $table->string('image')->nullable(); 
-            $table->timestamps();
+        Schema::table('associations', function (Blueprint $table) {
+            $table->string('image')->nullable()->after('email'); // Ajoute le champ 'image'
         });
     }
 
@@ -31,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::table('associations', function (Blueprint $table) {
+            $table->dropColumn('image'); // Supprime le champ 'image'
+        });
     }
 };

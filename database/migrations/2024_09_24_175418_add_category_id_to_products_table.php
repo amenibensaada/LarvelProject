@@ -13,8 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->unsignedBigInteger('category_id')->nullable();
+        // Create the products table
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->date('expiration_date')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable(); // Add the category_id column for foreign key
+            $table->timestamps();
+            // Add the foreign key constraint
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
         });
     }
@@ -26,9 +34,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign(['category_id']);
-            $table->dropColumn('category_id');
-        });
+        // Drop the products table along with the foreign key
+        Schema::dropIfExists('products');
     }
 };
