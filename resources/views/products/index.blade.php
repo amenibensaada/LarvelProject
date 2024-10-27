@@ -29,7 +29,7 @@
         <div class="col-md-4">
             <div class="card mb-4">
                 @if ($product->image)
-                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="width: 370px; height: 200px; object-fit: cover;">
+                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style=" height: 200px; object-fit: cover;">
                 @else
                     <img src="{{ asset('default-image.jpg') }}" style="width: 20px; height: 20px;" class="card-img-top" alt="Default Image">
                 @endif
