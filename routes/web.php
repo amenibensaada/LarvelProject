@@ -53,7 +53,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     // Routes pour les livraisons
     Route::get('/livraisons', [LivraisonController::class, 'index'])->name('livraisons.index'); // Liste des livraisons
-    Route::get('/livraison', [LivraisonController::class, 'livraison'])->name('livraisons.livraison');
+    Route::get('/livraison', [LivraisonController::class, 'allLivraisons'])->name('livraisons.livraison');
     Route::get('/livraisons/create', [LivraisonController::class, 'create'])->name('livraisons.create'); // Formulaire pour créer une livraison
     Route::post('/livraisons', [LivraisonController::class, 'store'])->name('livraisons.store'); // Enregistrer une nouvelle livraison
     Route::get('/livraisons/{id}', [LivraisonController::class, 'show'])->name('livraisons.show'); // Voir les détails d'une livraison

@@ -24,13 +24,18 @@ class LivraisonController extends Controller
         return view('livraisons.index', compact('livraisons'));
     }
 
-
-    // Afficher toutes les livraisons
-    public function allLivraisons()
+    public function allLivraisons(Request $request)
     {
-        $livraisons = Livraison::with('transporteur')->get();
-        return view('livraisons.index', compact('livraisons'));
-    }
+        $query = Livraison::with('transporteur');
+        if ($request->has('sort')) {
+            $order = $request->get('sort') === 'desc' ? 'desc' : 'asc';
+            $query->orderBy('date_livraison', $order);
+        }
+
+         $livraisons = $query->get(); // Execute the query here
+
+
+        return view('livraisons.livraison', compact('livraisons'));    }
 
     // Afficher le formulaire de création d'une nouvelle livraison
     public function create()

@@ -2,6 +2,14 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+<style>
+    .card-footer .btn {
+        width: 100px; /* Adjust the width as needed */
+        height: 40px; /* Adjust the height as needed */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }</style>
 @section('content')
 <div class="container">
     <h1 class="mb-4">Liste des Livraisons</h1>

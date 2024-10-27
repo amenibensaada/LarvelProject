@@ -1,4 +1,7 @@
 @extends('layouts.app_front')
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
 @section('content')
 <div class="container">
     <h1 class="mb-4">Liste des Livraisons</h1>
@@ -9,10 +12,15 @@
         </div>
     @endif
 
-    <a href="{{ route('livraisons.create') }}" class="btn btn-primary mb-4">
-        <i class="fas fa-plus"></i> Ajouter une Livraison
-    </a>
-
+    <div class="mb-3">
+        <span>Date de Livraison </span>
+        <a href="{{ route('livraisons.livraison', ['sort' => 'asc']) }}" class="btn btn-link">
+            <i class="fas fa-sort-up"></i>
+        </a>
+        <a href="{{ route('livraisons.livraison', ['sort' => 'desc']) }}" class="btn btn-link">
+            <i class="fas fa-sort-down"></i>
+        </a>
+    </div>
 
     <div class="row">
         @foreach($livraisons as $livraison)
@@ -25,23 +33,6 @@
                     <p class="card-text"><strong>Transporteur : </strong>{{ $livraison->transporteur->nom }}</p>
                     <p class="card-text"><strong>Association : </strong>{{ $livraison->association }}</p>
                     <p class="card-text"><strong>Produit Alimentaire : </strong>{{ $livraison->produitAlimentaire }}</p>
-                </div>
-                <div class="card-footer d-flex justify-content-between">
-                    <a href="{{ route('livraisons.edit', $livraison->id) }}" class="btn btn-warning me-2">
-                        <i class="fas fa-edit"></i> Modifier
-                    </a>
-
-                    <form action="{{ route('livraisons.destroy', $livraison->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger me-2">
-                            <i class="fas fa-trash"></i> Supprimer
-                        </button>
-                    </form>
-
-                    <a href="{{ route('reclamations.index', $livraison->id) }}" class="btn btn-info me-2">
-                        <i class="fas fa-exclamation-circle"></i> Réclamations
-                    </a>
                 </div>
             </div>
         </div>
