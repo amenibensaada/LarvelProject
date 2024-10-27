@@ -6,6 +6,10 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\EvenementController;
+use App\Http\Controllers\EvenementCategoryController;
+
+
 
 // Redirect root to login
 Route::get('/', function () {
@@ -45,3 +49,14 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::resource('products', ProductController::class);
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+
+// Events routes
+
+Route::resource('events', EvenementController::class);
+
+// Route::get('/events', [EvenementController::class, 'index'])->name('events.index');
+// 
+// Route::resource('evenements', EvenementController::class);
+
+Route::resource('evenement-categories', EvenementCategoryController::class);
