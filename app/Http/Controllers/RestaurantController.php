@@ -8,20 +8,13 @@ use App\Models\Restaurant; // Make sure this is imported
 class RestaurantController extends Controller
 {
     // Display a list of restaurants
-    public function index(Request $request)
+    public function index()
     {
-        $search = $request->query('search');
-        
-        // Get only the restaurants created by the authenticated user, filtered by search query if provided
-        $restaurants = Restaurant::where('user_id', auth()->id())
-            ->when($search, function ($query, $search) {
-                return $query->where('name', 'LIKE', '%' . $search . '%');
-            })
-            ->get();
+        // Get only the restaurants created by the authenticated user
+        $restaurants = Restaurant::where('user_id', auth()->id())->get();
         
         return view('restaurants.index', compact('restaurants'));
     }
-
 
     public function allRestaurants()
     {
@@ -126,96 +119,4 @@ class RestaurantController extends Controller
 
         return redirect()->route('restaurants.index')->with('success', 'Restaurant deleted successfully.');
     }
-
-    ///////////////////////////////// admin /////////////////////////////////
-    public function adminIndex(Request $request)
-        {
-            $sort = $request->query('sort', 'asc'); // Default to ascending if no parameter is set
-
-            // Fetch all restaurants with item count, sorted by item count
-            $restaurants = Restaurant::withCount('items')
-                ->orderBy('items_count', $sort)
-                ->get();
-
-            return view('back.restaurant.index', compact('restaurants'));
-        }
-    
-        // Store a new restaurant (for admin)
-    public function adminStore(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'phone' => 'required',
-            'email' => 'required|email|unique:restaurants',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
-
-        // Handle image upload
-        $imagePath = $request->hasFile('image') ? $request->file('image')->store('restaurant_images', 'public') : null;
-
-        // Create restaurant
-        Restaurant::create([
-            'name' => $request->input('name'),
-            'address' => $request->input('address'),
-            'phone' => $request->input('phone'),
-            'email' => $request->input('email'),
-            'image' => $imagePath,
-            'user_id' => auth()->id(),
-            'status' => 'approved'
-        ]);
-
-        return redirect()->route('back.restaurant.index')->with('success', 'Restaurant added successfully.');
-    }
-
-    // Update an existing restaurant (for admin)
-    public function adminUpdate(Request $request, $id)
-    {
-        $restaurant = Restaurant::findOrFail($id);
-
-        $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'phone' => 'required',
-            'email' => 'required|email|unique:restaurants,email,' . $restaurant->id,
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
-
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            // Delete the old image if exists
-            if ($restaurant->image) {
-                Storage::disk('public')->delete($restaurant->image);
-            }
-            $imagePath = $request->file('image')->store('restaurant_images', 'public');
-        } else {
-            $imagePath = $restaurant->image; // Keep the old image if no new one is uploaded
-        }
-
-        // Update restaurant
-        $restaurant->update([
-            'name' => $request->input('name'),
-            'address' => $request->input('address'),
-            'phone' => $request->input('phone'),
-            'email' => $request->input('email'),
-            'image' => $imagePath,
-            'status' => $request->input('status', $restaurant->status)
-        ]);
-
-        return redirect()->route('back.restaurant.index')->with('success', 'Restaurant updated successfully.');
-    }
-
-    // Delete a restaurant (for admin)
-    public function adminDestroy($id)
-    {
-        $restaurant = Restaurant::findOrFail($id);
-
-       
-
-        $restaurant->delete();
-
-        return redirect()->route('back.restaurant.index')->with('success', 'Restaurant deleted successfully.');
-    }
-
-
 }

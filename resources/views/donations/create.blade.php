@@ -22,44 +22,32 @@
                 <div class="card shadow-lg">
                    
                     <div class="card-body p-4">
-                        <form action="{{ isset($restaurant) ? route('restaurants.update', $restaurant->id) : route('restaurants.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ isset($donation) ? route('donations.update', $donation->id) : route('donations.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @if(isset($restaurant))
+                            @if(isset($donation))
                                 @method('PUT')
                             @endif
                             
                             <!-- Restaurant Name -->
                             <div class="form-group mb-3">
-                                <label for="name" class="form-label"><i class="mdi mdi-storefront"></i> Restaurant Name</label>
-                                <input type="text" name="name" class="form-control rounded-pill shadow-sm" value="{{ old('name', $restaurant->name ?? '') }}" required>
+                                <label for="restaurant_id" class="form-label">
+                                    <i class="mdi mdi-storefront"></i> Restaurant Name
+                                </label>
+                                <select name="restaurant_id" class="form-control rounded-pill shadow-sm" required>
+                                    <option value="" disabled selected>Select a Restaurant</option>
+                                    @foreach ($restaurants as $restaurant)
+                                        <option value="{{ $restaurant->id }}" {{ old('restaurant_id') == $restaurant->id ? 'selected' : '' }}>
+                                            {{ $restaurant->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
+                            
 
-                            <!-- Address -->
-                            <div class="form-group mb-3">
-                                <label for="address" class="form-label"><i class="mdi mdi-map-marker"></i> Address</label>
-                                <input type="text" name="address" class="form-control rounded-pill shadow-sm" value="{{ old('address', $restaurant->address ?? '') }}" required>
-                            </div>
-
-                            <!-- Phone -->
-                            <div class="form-group mb-3">
-                                <label for="phone" class="form-label"><i class="mdi mdi-phone"></i> Phone</label>
-                                <input type="text" name="phone" class="form-control rounded-pill shadow-sm" value="{{ old('phone', $restaurant->phone ?? '') }}" required>
-                            </div>
-
-                            <!-- Email -->
-                            <div class="form-group mb-3">
-                                <label for="email" class="form-label"><i class="mdi mdi-email"></i> Email</label>
-                                <input type="email" name="email" class="form-control rounded-pill shadow-sm" value="{{ old('email', $restaurant->email ?? '') }}" required>
-                            </div>
-
-                            <!-- Image Upload -->
-                            <div class="form-group mb-3">
-                                <label for="image" class="form-label"><i class="mdi mdi-image"></i> Restaurant Image</label>
-                                <input type="file" name="image" class="form-control">
-                            </div>
 
                             <!-- Status for Admins -->
                             @if(isset($restaurant) && auth()->user()->role == 'admin')
+
                             <div class="form-group mb-3">
                                 <label for="status" class="form-label"><i class="mdi mdi-check-circle"></i> Status</label>
                                 <select name="status" class="form-control rounded-pill shadow-sm">
@@ -67,11 +55,12 @@
                                     <option value="approved" {{ old('status', $restaurant->status ?? '') == 'approved' ? 'selected' : '' }}>Approved</option>
                                 </select>
                             </div>
+
                             @endif
 
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-lg btn-success rounded-pill shadow-sm">
-                                    <i class="mdi mdi-send"></i> {{ isset($restaurant) ? 'Update' : 'Submit' }}
+                                    <i class="mdi mdi-send"></i> {{ isset($donation) ? 'Update' : 'Donate' }}
                                 </button>
                             </div>
                         </form>

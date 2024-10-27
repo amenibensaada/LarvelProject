@@ -27,51 +27,31 @@
                             <!-- Restaurant Name -->
                             <div class="form-group mb-3">
                                 <label for="name" class="form-label"><i class="mdi mdi-storefront"></i> Restaurant Name</label>
-                                <input type="text" name="name" class="form-control rounded-pill shadow-sm" value="{{ old('name', $restaurant->name ?? '') }}">
-                                <!-- Error message -->
-                                @error('name')
-                                    <div style="color: red;">{{ $message }}</div>
-                                @enderror
+                                <input type="text" name="name" class="form-control rounded-pill shadow-sm" value="{{ old('name', $restaurant->name ?? '') }}" required>
                             </div>
 
                             <!-- Address -->
                             <div class="form-group mb-3">
                                 <label for="address" class="form-label"><i class="mdi mdi-map-marker"></i> Address</label>
-                                <input type="text" name="address" class="form-control rounded-pill shadow-sm" value="{{ old('address', $restaurant->address ?? '') }}">
-                                <!-- Error message -->
-                                @error('address')
-                                    <div style="color: red;">{{ $message }}</div>
-                                @enderror
+                                <input type="text" name="address" class="form-control rounded-pill shadow-sm" value="{{ old('address', $restaurant->address ?? '') }}" required>
                             </div>
 
                             <!-- Phone -->
                             <div class="form-group mb-3">
                                 <label for="phone" class="form-label"><i class="mdi mdi-phone"></i> Phone</label>
-                                <input type="text" name="phone" class="form-control rounded-pill shadow-sm" value="{{ old('phone', $restaurant->phone ?? '') }}">
-                                <!-- Error message -->
-                                @error('phone')
-                                    <div style="color: red;">{{ $message }}</div>
-                                @enderror
+                                <input type="text" name="phone" class="form-control rounded-pill shadow-sm" value="{{ old('phone', $restaurant->phone ?? '') }}" required>
                             </div>
 
                             <!-- Email -->
                             <div class="form-group mb-3">
                                 <label for="email" class="form-label"><i class="mdi mdi-email"></i> Email</label>
-                                <input type="email" name="email" class="form-control rounded-pill shadow-sm" value="{{ old('email', $restaurant->email ?? '') }}">
-                                <!-- Error message -->
-                                @error('email')
-                                    <div style="color: red;">{{ $message }}</div>
-                                @enderror
+                                <input type="email" name="email" class="form-control rounded-pill shadow-sm" value="{{ old('email', $restaurant->email ?? '') }}" required>
                             </div>
 
                             <!-- Image Upload -->
                             <div class="form-group mb-3">
                                 <label for="image" class="form-label"><i class="mdi mdi-image"></i> Restaurant Image</label>
                                 <input type="file" name="image" class="form-control">
-                                <!-- Error message -->
-                                @error('image')
-                                    <div style="color: red;">{{ $message }}</div>
-                                @enderror
                             </div>
 
                             <!-- Status for Admins -->
@@ -82,10 +62,6 @@
                                     <option value="pending" {{ old('status', $restaurant->status ?? 'pending') == 'pending' ? 'selected' : '' }}>Pending</option>
                                     <option value="approved" {{ old('status', $restaurant->status ?? '') == 'approved' ? 'selected' : '' }}>Approved</option>
                                 </select>
-                                <!-- Error message -->
-                                @error('status')
-                                    <div style="color: red;">{{ $message }}</div>
-                                @enderror
                             </div>
                             @endif
 

@@ -1,136 +1,85 @@
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-        <!-- Dashboard -->
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/') }}">
                 <i class="mdi mdi-grid-large menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
-        </li> --}}
-        <li class="nav-item nav-category">Livraison</li>
-         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#associations-menu" aria-controls="associations-menu">
-                <i class="menu-icon mdi mdi-account-group"></i>
-                <span class="menu-title">My Livraison</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="associations-menu">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('livraisons.livraison') }}">
-                            <i class="menu-icon mdi mdi-eye"></i>
-                            My Livraison
-                        </a>
-                    </li>
-                
-                </ul>
-            </div>
-        </li> 
-       
-        <li class="nav-item nav-category">Association</li>
-         <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#associations-menu" aria-controls="associations-menu">
-        <i class="menu-icon mdi mdi-account-group"></i>
-        <span class="menu-title">My Associations</span>
-        <i class="menu-arrow"></i>
-    </a>
-    <div class="collapse" id="associations-menu">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('associationsBack.index') }}">
-                    <i class="menu-icon mdi mdi-eye"></i>
-                    My Associations
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('associations.create') }}">
-                    <i class="menu-icon mdi mdi-plus-circle"></i>
-                    Add Association
-                </a>
-            </li>
-        </ul>
-    </div>
-</li> 
-<li class="nav-item"> 
-    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#beneficiares-menu" aria-controls="beneficiares-menu">         
-        <i class="menu-icon mdi mdi-account-group"></i>         
-        <span class="menu-title">My Beneficiaire</span>         
-        <i class="menu-arrow"></i>     
-    </a>     
-    <div class="collapse" id="beneficiares-menu"> <!-- Corrigé ici -->
-        <ul class="nav flex-column sub-menu">             
-            <li class="nav-item">                 
-                <a class="nav-link" href="{{ route('beneficiairesBack.index') }}">                     
-                    <i class="menu-icon mdi mdi-eye"></i>                     
-                    My beneficiares                 
-                </a>             
-            </li>             
-            <li class="nav-item">                 
-                <a class="nav-link" href="{{ route('beneficiares.create') }}">                     
-                    <i class="menu-icon mdi mdi-plus-circle"></i>                     
-                    Add beneficiare                 
-                </a>             
-            </li>         
-        </ul>     
-    </div> 
-</li>
-
-        </li> 
-
-        <!-- Restaurants Management Section -->
-        <li class="nav-item nav-category">Restaurants</li>
+        </li>
+        <li class="nav-item nav-category">UI Elements</li>
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#admin-restaurants-menu" aria-controls="admin-restaurants-menu">
-                <i class="menu-icon mdi mdi-silverware-fork-knife"></i>
-                <span class="menu-title"> Restaurants</span>
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                aria-controls="ui-basic">
+                <i class="menu-icon mdi mdi-floor-plan"></i>
+                <span class="menu-title">UI Elements</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="admin-restaurants-menu">
+            <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <!-- View All Restaurants -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('back.restaurant.index') }}">
-                            <i class="menu-icon mdi mdi-eye"></i>
-                            All Restaurants
-                        </a>
-                    </li>
-                    
+                    <li class="nav-item"> <a class="nav-link" href="#">Buttons</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Dropdowns</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Typography</a></li>
                 </ul>
             </div>
         </li>
 
-        <!-- Users Management Section -->
-        <li class="nav-item nav-category">Users</li>
+        <li class="nav-item nav-category">Donations</li>
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#admin-users-menu" aria-controls="admin-users-menu">
-                <i class="menu-icon mdi mdi-account-multiple"></i>
-                <span class="menu-title">Manage Users</span>
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#donations-menu"
+                aria-controls="restaurants-menu">
+                <i class="menu-icon mdi mdi-hand-heart"></i>
+                <span class="menu-title">Manage Donations</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="admin-users-menu">
+            <div class="collapse" id="donations-menu">
                 <ul class="nav flex-column sub-menu">
-                    {{-- <!-- View All Users -->
+                    <!-- Show Restaurants -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.users.index') }}">
-                            <i class="menu-icon mdi mdi-account"></i>
-                            All Users
+                        <a class="nav-link" href="{{ route('admin.donations.index') }}">
+                            <i class="menu-icon mdi mdi-eye"></i>
+                            Donations list
                         </a>
                     </li>
-                    <!-- Add New User (Optional) -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.users.create') }}">
-                            <i class="menu-icon mdi mdi-account-plus"></i>
-                            Add User
-                        </a>
-                    </li> --}}
+
                 </ul>
             </div>
         </li>
 
-        <!-- Documentation (if needed for Admin) -->
+
+        <li class="nav-item nav-category">Reviews</li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#reviews-menu" aria-controls="reviews-menu">
+                <i class="menu-icon mdi mdi-comment-text-multiple-outline"></i> <!-- Updated review icon -->
+                <span class="menu-title">My Reviews</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="reviews-menu">
+                <ul class="nav flex-column sub-menu">
+                    <!-- View My Reviews -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.reviews.index') }}">
+                            <!-- Updated route for reviews -->
+                            <i class="menu-icon mdi mdi-eye"></i>
+                            View My Reviews
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
+                aria-controls="form-elements">
+                <i class="menu-icon mdi mdi-card-text-outline"></i>
+                <span class="menu-title">Form elements</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="#">Basic Elements</a></li>
+                </ul>
+            </div>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="menu-icon mdi mdi-file-document"></i>
@@ -139,7 +88,8 @@
         </li>
         <li class="nav-item nav-category">Product Categories</li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="categories">
+            <a class="nav-link" data-bs-toggle="collapse" href="#categories" aria-expanded="false"
+                aria-controls="categories">
                 <i class="menu-icon mdi mdi-format-list-bulleted"></i>
                 <span class="menu-title">Product Categories</span>
                 <i class="menu-arrow"></i>

@@ -2,34 +2,29 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Restaurant extends Model
+class Donation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'address',
-        'phone',
-        'email',
-        'image',
+        'restaurant_id',
         'user_id',
         'status'
     ];
 
     // Define the relationship with the User model
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Additional relationships and logic can be added here
 
-    public function donations()
-    {
-        return $this->hasMany(Donation::class);
-    }
 }
