@@ -34,7 +34,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // Restaurant Items Routes (for managing items within a restaurant)
     Route::get('/restaurants/{restaurant}/items/create', [App\Http\Controllers\RestaurantItemController::class, 'create'])->name('restaurant_items.create'); // Form to add a new item
     Route::post('/restaurants/{restaurant}/items', [App\Http\Controllers\RestaurantItemController::class, 'store'])->name('restaurant_items.store'); // Store new item
-    Route::get('/items/{item}/edit', [App\Http\Controllers\RestaurantItemController::class, 'edit'])->name('restaurant_items.edit'); // Form to edit an item
+    // Route::get('/items/{item}/edit', [App\Http\Controllers\RestaurantItemController::class, 'edit'])->name('restaurant_items.edit'); // Form to edit an item
     Route::put('/items/{item}', [App\Http\Controllers\RestaurantItemController::class, 'update'])->name('restaurant_items.update'); // Update existing item
     Route::delete('/items/{item}', [App\Http\Controllers\RestaurantItemController::class, 'destroy'])->name('restaurant_items.destroy'); // Delete an item
 });

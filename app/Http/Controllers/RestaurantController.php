@@ -8,13 +8,20 @@ use App\Models\Restaurant; // Make sure this is imported
 class RestaurantController extends Controller
 {
     // Display a list of restaurants
-    public function index()
+    public function index(Request $request)
     {
-        // Get only the restaurants created by the authenticated user
-        $restaurants = Restaurant::where('user_id', auth()->id())->get();
+        $search = $request->query('search');
+        
+        // Get only the restaurants created by the authenticated user, filtered by search query if provided
+        $restaurants = Restaurant::where('user_id', auth()->id())
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'LIKE', '%' . $search . '%');
+            })
+            ->get();
         
         return view('restaurants.index', compact('restaurants'));
     }
+
 
     public function allRestaurants()
     {

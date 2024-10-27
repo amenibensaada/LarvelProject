@@ -45,11 +45,11 @@ class RestaurantItemController extends Controller
 
 
     // Show form for editing an item
-    public function edit($id)
-    {
-        $item = RestaurantItem::findOrFail($id);
-        return view('restaurant_items.edit', compact('item'));
-    }
+    // public function edit($id)
+    // {
+    //     $item = RestaurantItem::findOrFail($id);
+    //     return view('restaurant_items.edit', compact('item'));
+    // }
 
     // Update the item
     public function update(Request $request, $id)

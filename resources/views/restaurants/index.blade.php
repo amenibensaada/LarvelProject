@@ -8,6 +8,18 @@
         <p class="lead" style="font-size: 1.4rem; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);">Manage your restaurant details and items for donation on our platform.</p>
     </div>
 
+   
+        <!-- Search Bar -->
+        <form action="{{ route('restaurants.index') }}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search for a restaurant..." value="{{ request()->query('search') }}">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    
+       
+    
+
     <!-- Restaurant Cards -->
     <div class="row">
         @foreach ($restaurants as $restaurant)
@@ -57,9 +69,9 @@
                                                             
                                                             <!-- Buttons directly under quantity -->
                                                             <div class="btn-group mt-2">
-                                                                <a href="{{ route('restaurant_items.edit', $item->id) }}" class="btn btn-sm btn-warning rounded-pill me-2">
+                                                                <button type="button" class="btn btn-sm btn-warning rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#editItemModal-{{ $item->id }}">
                                                                     <i class="mdi mdi-pencil"></i>
-                                                                </a>
+                                                                </button> 
                                                                 <form action="{{ route('restaurant_items.destroy', $item->id) }}" method="POST" style="display:inline;">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -71,6 +83,55 @@
                                                         </div>
                                                     </div>
                                                 </li>
+                                                <!-- Modal for Editing Item (Move this inside the foreach loop) -->
+                                            <div class="modal fade" id="editItemModal-{{ $item->id }}" tabindex="-1" aria-labelledby="editItemModalLabel-{{ $item->id }}" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="editItemModalLabel-{{ $item->id }}">Edit Item for {{ $restaurant->name }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ route('restaurant_items.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                
+                                                                <!-- Display Validation Errors in Modal -->
+                                                                @if ($errors->any())
+                                                                    <div class="alert alert-danger">
+                                                                        <ul>
+                                                                            @foreach ($errors->all() as $error)
+                                                                                <li>{{ $error }}</li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </div>
+                                                                @endif
+
+                                                                <div class="mb-3">
+                                                                    <label for="edit-item-name-{{ $item->id }}" class="form-label">Item Name</label>
+                                                                    <input type="text" class="form-control" id="edit-item-name-{{ $item->id }}" name="name" value="{{ $item->name }}" required>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="edit-item-description-{{ $item->id }}" class="form-label">Description</label>
+                                                                    <textarea class="form-control" id="edit-item-description-{{ $item->id }}" name="description">{{ $item->description }}</textarea>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="edit-item-quantity-{{ $item->id }}" class="form-label">Quantity</label>
+                                                                    <input type="number" class="form-control" id="edit-item-quantity-{{ $item->id }}" name="quantity" value="{{ $item->quantity }}" min="1" required>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="edit-item-image-{{ $item->id }}" class="form-label">Item Image</label>
+                                                                    <input type="file" class="form-control" id="edit-item-image-{{ $item->id }}" name="image" accept="image/*">
+                                                                    @if($item->image)
+                                                                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" style="width: 100px; height: 100px; object-fit: cover; margin-top: 10px;">
+                                                                    @endif
+                                                                </div>
+                                                                <button type="submit" class="btn btn-primary">Update Item</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             @endforeach
                                             <!-- Add New Item Button -->
                                             <li class="list-group-item text-center">
@@ -90,9 +151,11 @@
 
                     <!-- Footer with Edit and Delete Restaurant -->
                     <div class="card-footer d-flex justify-content-between">
-                        <a href="{{ route('restaurants.edit', $restaurant->id) }}" class="btn btn-sm btn-warning">
-                            <i class="mdi mdi-pencil"></i> Edit
-                        </a>
+                        <!-- Trigger for Edit Modal -->
+                          
+                            <a href="{{ route('restaurants.edit', $restaurant->id) }}" class="btn btn-sm btn-warning">
+                                <i class="mdi mdi-pencil"></i> Edit
+                            </a>
                         <form action="{{ route('restaurants.destroy', $restaurant->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -113,6 +176,11 @@
         </div>
     @endif
 </div>
+
+
+
+
+
 
 <!-- Modal for Adding New Items -->
 @foreach ($restaurants as $restaurant)
