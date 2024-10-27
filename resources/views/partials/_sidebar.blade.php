@@ -2,7 +2,11 @@
 <head>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-ABcdEFGHIJKLMNOPQRsTUVWXYZZ12345A" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
+
+
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
@@ -74,9 +78,9 @@
             </div>
         </li>
     <!-- Livraison section  -->
-<li class="nav-item nav-category">
-    <label for="livraisons"></label>
-</li>
+   
+
+<li class="nav-item nav-category">Livraison</li>
 <li class="nav-item">
     <a class="nav-link collapsed" data-bs-toggle="collapse" href="#livraison-menu" aria-controls="livraison-menu">
         <i class="menu-icon fas fa-truck"></i> <!-- Changed icon -->
