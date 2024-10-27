@@ -21,6 +21,7 @@ class TransporteurController extends Controller
         return view('transporteurs.index', compact('transporteurs'));
 
     }
+  
 
     // Afficher tous les transporteurs
     public function allTransporteurs()

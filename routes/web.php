@@ -70,11 +70,14 @@ Route::prefix('/livraisons/{livraison}')->group(function () {
     Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit'])->name('reclamations.edit'); // Formulaire de modification d'une réclamation
     Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update'])->name('reclamations.update'); // Mettre à jour une réclamation
     Route::delete('/reclamations/{reclamation}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy'); // Supprimer une réclamation
+    
 });
 });
 // Protect Admin (Back Office) Routes
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/livraison', [LivraisonController::class, 'allLivraisons'])->name('livraisons.livraison');
+    Route::get('/transporteurs', [TransporteurController::class, 'adminindex'])->name('transporteurs.admontransporteur'); // Liste des transporteurs
 });
 
 // Logout route for both users and admins

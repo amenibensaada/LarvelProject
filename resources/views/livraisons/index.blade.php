@@ -33,8 +33,8 @@
                     <p class="card-text"><strong>Status : </strong>{{ $livraison->status }}</p>
                     <p class="card-text"><strong>Quantité Livrée : </strong>{{ $livraison->quantite_livree }}</p>
                     <p class="card-text"><strong>Transporteur : </strong>{{ $livraison->transporteur->nom }}</p>
-                    <p class="card-text"><strong>Association : </strong>{{ $livraison->association }}</p>
-                    <p class="card-text"><strong>Produit Alimentaire : </strong>{{ $livraison->produitAlimentaire }}</p>
+                    {{-- <p class="card-text"><strong>Association : </strong>{{ $livraison->association }}</p>
+                    <p class="card-text"><strong>Produit Alimentaire : </strong>{{ $livraison->produitAlimentaire }}</p> --}}
                 </div>
                 <div class="card-footer d-flex justify-content-between">
                     <a href="{{ route('livraisons.edit', $livraison->id) }}" class="btn btn-warning me-2 action-btn">
