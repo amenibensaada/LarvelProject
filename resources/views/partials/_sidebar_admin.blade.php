@@ -1,12 +1,12 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <!-- Dashboard -->
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.dashboard') }}">
                 <i class="mdi mdi-grid-large menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
-        </li>
+        </li> --}}
 
         <!-- Restaurants Management Section -->
         <li class="nav-item nav-category">Restaurants</li>
