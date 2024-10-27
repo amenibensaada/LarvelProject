@@ -141,12 +141,12 @@
 
        <li class="nav-item nav-category">Products</li>
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#restaurants-menu" aria-controls="restaurants-menu">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#product-menu" aria-controls="product-menu">
                 <i class="menu-icon mdi mdi-food-apple"></i>
                 <span class="menu-title">My Products</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="restaurants-menu">
+            <div class="collapse" id="product-menu">
                 <ul class="nav flex-column sub-menu" >
                  
                     <div class="nav-item">
