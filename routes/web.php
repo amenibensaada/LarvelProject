@@ -42,7 +42,12 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 // Protect Admin (Back Office) Routes
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/restaurants', [RestaurantController::class, 'adminIndex'])->name('back.restaurant.index');
+    Route::post('/restaurants', [RestaurantController::class, 'adminStore'])->name('back.restaurant.store');
+    Route::put('/restaurants/{id}', [RestaurantController::class, 'adminUpdate'])->name('back.restaurant.update');
+    Route::delete('/restaurants/{id}', [RestaurantController::class, 'adminDestroy'])->name('back.restaurant.destroy');
 });
+
 
 // Logout route for both users and admins
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
