@@ -9,6 +9,9 @@ use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\BeneficiaireBackController;
 use App\Http\Controllers\BeneficiaireController;
 use App\Http\Controllers\front\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductStockController;
+use App\Http\Controllers\Admin\CategoryController;
 
 // Redirect root to login
 Route::get('/', function () {
@@ -51,6 +54,12 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
    
 
+    // Restaurant Items Routes (for managing items within a restaurant)
+    Route::get('/restaurants/{restaurant}/items/create', [App\Http\Controllers\RestaurantItemController::class, 'create'])->name('restaurant_items.create'); // Form to add a new item
+    Route::post('/restaurants/{restaurant}/items', [App\Http\Controllers\RestaurantItemController::class, 'store'])->name('restaurant_items.store'); // Store new item
+    // Route::get('/items/{item}/edit', [App\Http\Controllers\RestaurantItemController::class, 'edit'])->name('restaurant_items.edit'); // Form to edit an item
+    Route::put('/items/{item}', [App\Http\Controllers\RestaurantItemController::class, 'update'])->name('restaurant_items.update'); // Update existing item
+    Route::delete('/items/{item}', [App\Http\Controllers\RestaurantItemController::class, 'destroy'])->name('restaurant_items.destroy'); // Delete an item
 });
 
 // Protect Admin (Back Office) Routes
@@ -64,7 +73,20 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 
 
 
+    Route::get('/restaurants', [RestaurantController::class, 'adminIndex'])->name('back.restaurant.index');
+    Route::post('/restaurants', [RestaurantController::class, 'adminStore'])->name('back.restaurant.store');
+    Route::put('/restaurants/{id}', [RestaurantController::class, 'adminUpdate'])->name('back.restaurant.update');
+    Route::delete('/restaurants/{id}', [RestaurantController::class, 'adminDestroy'])->name('back.restaurant.destroy');
+    Route::get('dashboard', [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('categories', CategoryController::class);
 });
+
 
 // Logout route for both users and admins
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::resource('products', ProductController::class);
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+Route::resource('product_stocks', \App\Http\Controllers\ProductStockController::class);

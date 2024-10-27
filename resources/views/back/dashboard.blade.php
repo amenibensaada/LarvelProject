@@ -196,6 +196,31 @@
                     </div>
                 </div>
 
+                <!-- Sidebar Navigation -->
+                <div class="row mt-4">
+                    <div class="col-lg-12">
+                        <div class="card card-rounded">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="{{ route('dashboard') }}">
+                                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                                            <span>Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('categories.index') }}">
+                                            <i class="fas fa-fw fa-list"></i>
+                                            <span>Categories</span>
+                                        </a>
+                                    </li>
+                                    <!-- Add more admin menu items here -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
