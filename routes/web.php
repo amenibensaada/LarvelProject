@@ -126,6 +126,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/restaurants/{id}', [RestaurantController::class, 'adminDestroy'])->name('back.restaurant.destroy');
     Route::get('dashboard', [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('categories', CategoryController::class);
+    Route::get('/events', [EvenementController::class, 'adminindex'])->name('events.indexadmin');
 });
 
 

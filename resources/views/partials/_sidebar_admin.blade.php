@@ -16,7 +16,7 @@
             <div class="collapse" id="events-menu">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('events.index') }}">
+                        <a class="nav-link" href="{{ route('events.indexadmin') }}">
                             <i class="menu-icon mdi mdi-eye"></i>
                             My Events
                         </a>

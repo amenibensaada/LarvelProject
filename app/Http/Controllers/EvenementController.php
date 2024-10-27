@@ -22,6 +22,20 @@ class EvenementController extends Controller
         return view('events.index', compact('events', 'categories'));
     }
 
+    public function adminindex(Request $request)
+    {
+        $categories = EvenementCategory::all();
+        $query = Evenement::with('evenementCategory');
+
+        if ($request->has('evenement_category')) {
+            $query->where('evenement_category_id', $request->evenement_category);
+        }
+
+        $events = $query->get();
+
+        return view('events.indexadmin', compact('events', 'categories'));
+    }
+
     public function create()
     {
         $categories = EvenementCategory::all();
