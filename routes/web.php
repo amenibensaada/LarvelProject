@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AssociationBackController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\BeneficiaireBackController;
 use App\Http\Controllers\BeneficiaireController;
 use App\Http\Controllers\front\HomeController;
 
@@ -54,6 +56,14 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 // Protect Admin (Back Office) Routes
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Back\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::resource('/associationsBack', AssociationBackController::class);
+    Route::delete('/associationsBack/{id}', [AssociationBackController::class, 'destroy'])->name('associations1.destroy'); // Delete restaurant
+    Route::resource('/beneficiairesBack', BeneficiaireBackController::class);
+    Route::delete('/beneficiaresBack/{id}', [BeneficiaireBackController::class, 'destroy'])->name('beneficiares1.destroy'); // Delete restaurant
+
+
+
+
 });
 
 // Logout route for both users and admins

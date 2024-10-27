@@ -13,11 +13,15 @@ class AssociationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $associations = Association::all();
-    return view('associations.index', compact('associations'));
-
+        $query = $request->input('search'); // Récupère la requête de recherche
+        $associations = Association::when($query, function ($queryBuilder) use ($query) {
+            return $queryBuilder->where('nom', 'like', "%{$query}%")
+                                 ->orWhere('email', 'like', "%{$query}%");
+        })->get();
+    
+        return view('associations.index', compact('associations'));
     }
 
     /**
@@ -37,13 +41,24 @@ class AssociationController extends Controller
      */
     public function store(Request $request) {
         $request->validate([
-            'nom' => 'required',
-            'email' => 'required|email|unique:associations',
-            'telephone' => 'required',
-            'addresse' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' 
-
+            'nom' => 'required|string|max:6',
+            'email' => 'required|email|unique:associations,email',
+            'telephone' => 'required|numeric|digits:8',  // Changed 'number' to 'numeric'
+            'addresse' => 'required|string|max:10',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ], [
+            'nom.required' => 'Le nom de l\'association est requis.',
+            'email.required' => 'L\'adresse e-mail est requise.',
+            'email.email' => 'Veuillez entrer une adresse e-mail valide.',
+            'email.unique' => 'Cette adresse e-mail est déjà utilisée.',
+            'telephone.required' => 'Le numéro de téléphone est requis.',
+            'telephone.numeric' => 'Le numéro de téléphone doit être un nombre.',  // Optional: Add a custom message for numeric
+            'addresse.required' => 'L\'adresse est requise.',
+            'image.image' => 'Le fichier doit être une image.',
+            'image.mimes' => 'Les formats d\'image acceptés sont jpeg, png, jpg, et gif.',
+            'image.max' => 'L\'image ne doit pas dépasser 2 Mo.'
         ]);
+    
 
         // Handle image upload
         $imagePath = null;
