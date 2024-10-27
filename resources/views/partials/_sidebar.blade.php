@@ -63,12 +63,16 @@
                 </a>
             </li>
             <!-- Add New Livraison -->
+
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('livraisons.create') }}">
-                    <i class="menu-icon fas fa-plus-circle"></i> <!-- Changed icon -->
-                    Ajouter Livraison
+                <a class="nav-link" href="{{ route('transporteurs.index') }}">
+                    <i class="menu-icon fas fa-shipping-fast"></i> <!-- Shipping Fast icon -->
+                    Transporteur
                 </a>
             </li>
+
+
+
         </ul>
     </div>
 </li>

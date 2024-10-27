@@ -9,11 +9,16 @@ use App\Models\Transporteur;
 class TransporteurController extends Controller
 {
     // Afficher la liste des transporteurs de l'utilisateur authentifié
-    public function index()
+    public function index(Request $request)
     {
-        $transporteurs = Transporteur::all();
+        $search = $request->input('search');
+
+        // Filtrer les transporteurs par nom s'il y a un critère de recherche
+        $transporteurs = Transporteur::when($search, function ($query, $search) {
+            return $query->where('nom', 'like', '%' . $search . '%');
+        })->get();
+
         return view('transporteurs.index', compact('transporteurs'));
-        var_dump($transporteurs);
 
     }
 

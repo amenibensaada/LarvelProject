@@ -1,7 +1,4 @@
 @extends('layouts.app_front')
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
 @section('content')
 <div class="container">
     <h1 class="mb-4">Liste des Livraisons</h1>
@@ -16,8 +13,9 @@
         <i class="fas fa-plus"></i> Ajouter une Livraison
     </a>
 
+
     <div class="row">
-        @forelse($livraisons as $livraison)
+        @foreach($livraisons as $livraison)
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card h-100">
                 <div class="card-body">
@@ -29,28 +27,25 @@
                     <p class="card-text"><strong>Produit Alimentaire : </strong>{{ $livraison->produitAlimentaire }}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="{{ route('livraisons.edit', $livraison->id) }}" class="btn btn-warning me-2 action-btn">
+                    <a href="{{ route('livraisons.edit', $livraison->id) }}" class="btn btn-warning me-2">
                         <i class="fas fa-edit"></i> Modifier
                     </a>
 
-                    <form action="{{ route('livraisons.destroy', $livraison->id) }}" method="POST" class="d-inline action-btn-form">
+                    <form action="{{ route('livraisons.destroy', $livraison->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger me-2 action-btn">
+                        <button type="submit" class="btn btn-danger me-2">
                             <i class="fas fa-trash"></i> Supprimer
                         </button>
                     </form>
 
-                    <a href="{{ route('reclamations.index', $livraison->id) }}" class="btn btn-info me-2 action-btn">
+                    <a href="{{ route('reclamations.index', $livraison->id) }}" class="btn btn-info me-2">
                         <i class="fas fa-exclamation-circle"></i> Réclamations
                     </a>
                 </div>
-
             </div>
         </div>
-        @empty
-            <p>Aucune livraison trouvée pour cet utilisateur.</p>
-        @endforelse
+        @endforeach
     </div>
 </div>
 @endsection

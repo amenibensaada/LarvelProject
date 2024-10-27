@@ -1,5 +1,7 @@
-@extends('layouts.app')
-
+@extends('layouts.app_front')
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
 @section('content')
 <div class="container">
     <h1>Ajouter une Réclamation pour la livraison {{ $livraison->id }}</h1>

@@ -11,11 +11,19 @@ class LivraisonController extends Controller
 {
 
     // Afficher la liste des livraisons de l'utilisateur authentifié
-    public function index()
+  /*  public function index()
     {
         $livraisons = Livraison::all();
         return view('livraisons.index', compact('livraisons'));
+    }*/
+    public function index()
+    {
+
+        $livraisons = Livraison::where('user_id', auth()->id())->get();
+
+        return view('livraisons.index', compact('livraisons'));
     }
+
 
     // Afficher toutes les livraisons
     public function allLivraisons()
@@ -86,6 +94,8 @@ class LivraisonController extends Controller
             'association_id' =>5 ,
             'produit_alimentaire_id' => 55,
             'transporteur_id' => 3,
+            'user_id' => auth()->user()->id,
+
         ]);
 
         return redirect()->route('livraisons.index')->with('success', 'Livraison mise à jour avec succès.');

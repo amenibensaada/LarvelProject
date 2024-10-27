@@ -41,7 +41,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 
     // Routes pour les transporteurs
-    Route::get('/transporteurs', [TransporteurController::class, 'index'])->name('transporteurs.index'); // Liste des transporteurs
+    Route::get('/transporteurs', [TransporteurController::class, 'index'])->name('transporteurs.index') ->middleware('auth'); // Liste des transporteurs
+    Route::get('/transporteur', [TransporteurController::class, 'transport'])->name('transporteurs.transport'); // Liste des transporteurs
+
     Route::get('/transporteurs/create', [TransporteurController::class, 'create'])->name('transporteurs.create'); // Formulaire pour créer un transporteur
     Route::post('/transporteurs', [TransporteurController::class, 'store'])->name('transporteurs.store'); // Enregistrer un nouveau transporteur
     Route::get('/transporteurs/{id}', [TransporteurController::class, 'show'])->name('transporteurs.show'); // Voir les détails d'un transporteur
@@ -51,6 +53,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     // Routes pour les livraisons
     Route::get('/livraisons', [LivraisonController::class, 'index'])->name('livraisons.index'); // Liste des livraisons
+    Route::get('/livraison', [LivraisonController::class, 'livraison'])->name('livraisons.livraison');
     Route::get('/livraisons/create', [LivraisonController::class, 'create'])->name('livraisons.create'); // Formulaire pour créer une livraison
     Route::post('/livraisons', [LivraisonController::class, 'store'])->name('livraisons.store'); // Enregistrer une nouvelle livraison
     Route::get('/livraisons/{id}', [LivraisonController::class, 'show'])->name('livraisons.show'); // Voir les détails d'une livraison

@@ -16,7 +16,9 @@ class Livraison extends Model
         'quantite_livree',
         'association_id',
         'produit_alimentaire_id',
-        'transporteur_id'
+        'transporteur_id',
+        'user_id', // Foreign key for the user relationship
+
     ];
 
     public function transporteur()

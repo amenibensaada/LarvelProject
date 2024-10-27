@@ -1,7 +1,9 @@
 @extends('layouts.app_front')
+
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 @section('content')
 <div class="container">
     <h1 class="mb-4 text-center">Liste des Transporteurs</h1>
@@ -11,12 +13,6 @@
             {{ session('success') }}
         </div>
     @endif
-
-    <!-- Formulaire de recherche -->
-    <form action="{{ route('transporteurs.index') }}" method="GET" class="d-flex justify-content-center mb-4">
-        <input type="text" name="search" class="form-control w-50 me-2" placeholder="Rechercher par nom" value="{{ request('search') }}">
-        <button type="submit" class="btn btn-primary">Rechercher</button>
-    </form>
 
     <div class="d-flex justify-content-center mb-4">
         <a href="{{ route('transporteurs.create') }}" class="btn btn-primary">Ajouter un Transporteur</a>
@@ -49,6 +45,7 @@
                             </button>
                         </form>
                     </div>
+
                 </div>
             </div>
         @endforeach
