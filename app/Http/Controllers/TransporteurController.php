@@ -49,7 +49,7 @@ class TransporteurController extends Controller
             'nom' => $request->input('nom'),
             'telephone' => $request->input('telephone'),
             'email' => $request->input('email'),
-            'tranporteur_id' => auth()->user()->id,
+            
         ]);
 
         return redirect()->route('transporteurs.index')->with('success', 'Transporteur ajouté avec succès.');

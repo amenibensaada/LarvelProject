@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('transporteurs', function (Blueprint $table) {
-            $table->unsignedBigInteger('transporteur_id')->nullable();
+            $table->id();
             $table->string('nom');
             $table->string('telephone');
             $table->string('email')->unique();

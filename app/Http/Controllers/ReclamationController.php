@@ -38,14 +38,16 @@ class ReclamationController extends Controller
 
          return redirect()->route('reclamations.index', $livraisonId)->with('success', 'Réclamation ajoutée avec succès.');
      }
-public function edit($id){
-    $livraison = Livraison::findOrFail($id);
 
-    $reclamation = Reclamation::findOrFail($id);
-    return view('reclamations.edit', compact('reclamation','livraison'));
+        public function edit($id)
+        {
+            $livraison = Livraison::findOrFail($id);
+
+            $reclamation = Reclamation::findOrFail($id);
+            return view('reclamations.edit', compact('reclamation','livraison'));
 
 
-}
+        }
      // Mettre à jour une réclamation
      public function update(Request $request, $id)
      {

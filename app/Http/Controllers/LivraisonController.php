@@ -93,7 +93,7 @@ class LivraisonController extends Controller
             'quantite_livree' => $request->input('quantite_livree'),
             'association_id' =>5 ,
             'produit_alimentaire_id' => 55,
-            'transporteur_id' => 3,
+            'transporteur_id' => $request->input('transporteur_id'),
             'user_id' => auth()->user()->id,
 
         ]);

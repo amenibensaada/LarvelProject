@@ -18,7 +18,7 @@
     @endif
 
     <!-- Formulaire de modification -->
-    <form action="{{ route('reclamations.edit', [$livraison->id, $reclamation->id]) }}" method="POST">
+    <form action="{{ route('reclamations.update', [$livraison->id, $reclamation->id]) }}" method="POST">
         @csrf
         @method('PUT')
 
