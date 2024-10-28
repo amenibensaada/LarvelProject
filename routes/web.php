@@ -175,6 +175,8 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 // Events routes
 
 Route::resource('events', EvenementController::class);
+Route::get('/events', [EvenementController::class, 'index'])->name('events.index'); // Vue des événements
+Route::get('/admin/events', [EvenementController::class, 'adminindex'])->name('events.adminindex');
 
 // Route::get('/events', [EvenementController::class, 'index'])->name('events.index');
 // 

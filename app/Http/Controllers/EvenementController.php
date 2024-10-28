@@ -9,28 +9,46 @@ use Illuminate\Http\Request;
 class EvenementController extends Controller
 {
     public function index(Request $request)
-    {
-        $categories = EvenementCategory::all();
-        $query = Evenement::with('evenementCategory');
+{
+    $categories = EvenementCategory::all();
+    $search = $request->query('search');
+    $sortOrder = $request->query('sort', 'asc');
+    $query = Evenement::with('evenementCategory');
 
-        if ($request->has('evenement_category')) {
-            $query->where('evenement_category_id', $request->evenement_category);
-        }
-
-        $events = $query->get();
-
-        return view('events.index', compact('events', 'categories'));
+    // Filtrer par catégorie si fourni
+    if ($request->has('evenement_category')) {
+        $query->where('evenement_category_id', $request->evenement_category);
     }
+
+    // Filtrer par nom de l'événement si une recherche est effectuée
+    if ($search) {
+        $query->where('title', 'LIKE', '%' . $search . '%');
+    }
+
+    $query->orderBy('title', $sortOrder);
+
+    $events = $query->get();
+
+    return view('events.index', compact('events', 'categories'));
+}
+
 
     public function adminindex(Request $request)
     {
         $categories = EvenementCategory::all();
+        $search = $request->query('search');
+        // $sortOrder = $request->query('sort', 'asc');
         $query = Evenement::with('evenementCategory');
 
         if ($request->has('evenement_category')) {
             $query->where('evenement_category_id', $request->evenement_category);
         }
+        if ($search) {
+            $query->where('title', 'LIKE', '%' . $search . '%');
+        }
 
+        // $query->orderBy('title', $sortOrder);
+    
         $events = $query->get();
 
         return view('events.indexadmin', compact('events', 'categories'));
@@ -70,7 +88,7 @@ class EvenementController extends Controller
             'evenement_category_id' => $request->input('evenement_category_id'),
         ]);
         
-        return redirect()->route('events.index')->with('success', 'Event added successfully.');
+        return redirect()->route('events.adminindex')->with('success', 'Event added successfully.');
     }
 
     public function edit($id)
@@ -113,7 +131,7 @@ class EvenementController extends Controller
             'evenement_category_id' => $request->input('evenement_category_id'),
         ]);
 
-        return redirect()->route('events.index')->with('success', 'Event updated successfully.');
+        return redirect()->route('events.adminindex')->with('success', 'Event updated successfully.');
     }
 
     public function destroy($id)

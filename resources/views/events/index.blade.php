@@ -8,6 +8,22 @@
         <h1 class="display-4" style="font-size: 3rem; font-weight: bold; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">My Events</h1>
         <p class="lead" style="font-size: 1.4rem; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);">Manage Event Details</p>
     </div>
+
+    <!-- Barre de recherche -->
+<form action="{{ route('events.index') }}" method="GET" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="Rechercher un événement..." value="{{ request()->query('search') }}">
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+    </div>
+    <div class="input-group">
+        <label for="sort" class="form-label me-2">Trier par titre :</label>
+        <select name="sort" id="sort" class="form-select" onchange="this.form.submit()">
+            <option value="asc" {{ request()->query('sort') == 'asc' ? 'selected' : '' }}>Ascendant</option>
+            <option value="desc" {{ request()->query('sort') == 'desc' ? 'selected' : '' }}>Descendant</option>
+        </select>
+    </div>
+</form>
+
     
     <div class="row">
         @forelse ($events as $event)

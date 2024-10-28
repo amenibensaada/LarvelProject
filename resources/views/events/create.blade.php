@@ -119,7 +119,7 @@ document.getElementById('eventForm').addEventListener('submit', function(event) 
         this.submit();
     }
 });
-</script>   
+</script>
 
 @endsection
 
