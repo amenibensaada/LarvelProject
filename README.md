@@ -2,7 +2,7 @@
 
 A Laravel 9 application with user/admin workflows for restaurants, associations, beneficiaries, donations, products, stock, deliveries and events. The repository includes Blade views, controllers, routes and database migrations.
 
-An academic application in Ameni Ben Saada’s public learning history. Its features describe the repository as a whole; they are not claims that every component was implemented individually by Ameni. [Current portfolio and project contributions](https://amenibensaadaportfolio.netlify.app/?utm_source=github&utm_medium=profile&utm_campaign=personal_brand).
+An academic application in Ameni Ben Saada’s public learning history. Its features describe the repository as a whole; they are not claims that every component was implemented individually by Ameni. [Current portfolio and project contributions](https://amenibensaada.tn/?utm_source=github&utm_medium=profile&utm_campaign=personal_brand).
 
 ## Explore the application
 
